@@ -12,29 +12,50 @@ namespace systemadministration.BLL.Services
         public EmployeessServices()
         {
         }
-        public Task<List<Employees>> GetCategoriesAsync()
+        private static List<Employees> employees = new List<Employees>();
+        public Task<List<Employees>> GetEmployeesAsync()
         {
-            throw new NotImplementedException();
+            
+            return Task.FromResult(employees);
+            //throw new NotImplementedException();
         }
 
-        public Task<Employees> GetCategoryByIdAsync(int id)
+        public Task<Employees> GetEmployeesByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var employee = employees.Find(e => e.id == id); // Пошук працівника за ID
+            return Task.FromResult(employee);
         }
 
-        public Task AddCategorAsync(Employees employees)
+        public Task AddEmployeesAsync(Employees employee)
         {
-            throw new NotImplementedException();
+            employees.Add(employee); 
+            return Task.CompletedTask;
         }
 
-        public Task UpdateCategory(Employees employees)
+        public Task UpdateEmployeesAsync(Employees employee)
         {
-            throw new NotImplementedException();
+            var existingEmployee = employees.Find(e => e.id == employee.id);
+            if (existingEmployee != null)
+            {
+                existingEmployee.surname = employee.surname;
+                existingEmployee.name = employee.name;
+                existingEmployee.patronymic = employee.patronymic;
+                existingEmployee.year_of_birth = employee.year_of_birth;
+                existingEmployee.year_of_admission = employee.year_of_admission;
+                existingEmployee.length_of_service = employee.length_of_service;
+                existingEmployee.position = employee.position;
+                existingEmployee.gender = employee.gender;
+                existingEmployee.address = employee.address;
+                existingEmployee.city = employee.city;
+                existingEmployee.phone_number = employee.phone_number;
+            }
+            return Task.CompletedTask;
         }
 
-        public Task DeleteCategorAsync(Employees employees)
+        public Task DeleteEmployeesAsync(Employees employee)
         {
-            throw new NotImplementedException();
+            employees.Remove(employee); // Видаляє працівника
+            return Task.CompletedTask;
         }
     }
 }

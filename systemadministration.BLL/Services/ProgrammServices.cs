@@ -13,26 +13,47 @@ namespace systemadministration.BLL.Services
         {
 
         }
-
-        public Task<List<Program>> GetCategoriesAsync()
+        private static List<Program> programs = new List<Program>();
+        public Task<List<Program>> GetProgramAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(programs);
         }
 
-        public Task<Program> GetCategoryByIdAsync(int id)
+        public Task<Program> GetProgramByIdAsync(string show)
         {
-            throw new NotImplementedException();
+            var program = programs.Find(p => p.show == show); 
+            return Task.FromResult(program);
         }
 
-        public Task AddCategorAsync(Program program)
+        public Task AddProgramAsync(Program program)
         {
-            throw new NotImplementedException();
+            programs.Add(program);
+            return Task.CompletedTask;
         }
 
-        public Task UpdateCategory(Program program)
+        public Task UpdateProgramAsync(Program program)
         {
-            throw new NotImplementedException();
+            var existingProgram = programs.Find(p => p.show == program.show);
+            if (existingProgram != null)
+            {
+                existingProgram.show = program.show;
+                existingProgram.ticket_price = program.ticket_price;
+                existingProgram.days_and_times = program.days_and_times;
+                existingProgram.premiere_data = program.premiere_data;
+                existingProgram.performance_period = program.performance_period;
+            }
+            return Task.CompletedTask;
         }
-
+        public Task DeleteProgramAsync(Program program)
+        {
+            programs.Remove(program); 
+            return Task.CompletedTask;
+        }
     }
-}
+ }
+    
+      
+
+
+
+

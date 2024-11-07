@@ -1,7 +1,13 @@
+using systemadministration.BLL.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<EmployeessServices>();
+builder.Services.AddSingleton<PerformanceeServices>();
 
 var app = builder.Build();
 
