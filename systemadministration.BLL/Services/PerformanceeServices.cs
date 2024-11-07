@@ -22,8 +22,7 @@ namespace systemadministration.BLL.Services
 
         public Task<Performance> GetPerformanceByIdAsync(int performance_id)
         {
-            var performancee = performance_id.Find(pr => pr. == show);
-            return Task.FromResult(program);
+            throw new NotImplementedException();
         }
 
         public Task AddPerformanceAsync(Performance performance)
@@ -44,33 +43,3 @@ namespace systemadministration.BLL.Services
 
 }
 
-public Task<Program> GetProgramByIdAsync(string show)
-{
-    var program = programs.Find(p => p.show == show);
-    return Task.FromResult(program);
-}
-
-public Task AddProgramAsync(Program program)
-{
-    programs.Add(program);
-    return Task.CompletedTask;
-}
-
-public Task UpdateProgramAsync(Program program)
-{
-    var existingProgram = programs.Find(p => p.show == program.show);
-    if (existingProgram != null)
-    {
-        existingProgram.show = program.show;
-        existingProgram.ticket_price = program.ticket_price;
-        existingProgram.days_and_times = program.days_and_times;
-        existingProgram.premiere_data = program.premiere_data;
-        existingProgram.performance_period = program.performance_period;
-    }
-    return Task.CompletedTask;
-}
-public Task DeleteProgramAsync(Program program)
-{
-    programs.Remove(program);
-    return Task.CompletedTask;
-}
