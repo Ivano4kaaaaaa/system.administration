@@ -8,7 +8,7 @@ namespace system.administration.DAL.Entities
 {
     public  class Schedule
     {
-        public int tour_id { get; set; }
+        public int id { get; set; }
         public int perfomance_id { get; set; }
         public DateTime start_data { get; set; }
         public DateTime end_data { get; set; }

@@ -1,3 +1,5 @@
+using system.administration.DAL.IRepository;
+using system.administration.DAL.Repository;
 using systemadministration.BLL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,8 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<EmployeessServices>();
-builder.Services.AddSingleton<PerformanceeServices>();
+builder.Services.AddSingleton<IEmployeesRepository, EmployeesRepository>();
+
+builder.Services.AddSingleton<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddSingleton<IProgramRepository, ProgramRepository>();
+builder.Services.AddSingleton<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddSingleton<ITroupeRepository, TroupeRepository>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using system.administration.DAL.Entities;
+using system.administration.DAL.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,55 +10,35 @@ namespace systemadministration.BLL.Services
 {
     public class EmployeessServices
     {
-        public EmployeessServices()
+        private readonly IEmployeesRepository _employeesRepository;
+        public EmployeessServices(IEmployeesRepository employeesRepository)
         {
-        }
-        private static List<Employees> employees = new List<Employees>();
-        public Task<List<Employees>> GetEmployeesAsync()
-        {
-            
-            return Task.FromResult(employees);
-            //throw new NotImplementedException();
+            _employeesRepository = employeesRepository;
         }
 
-        public Task<Employees> GetEmployeesByIdAsync(int id)
+
+        public async Task AddEmployeesAsync(Employees empl)
         {
-            var employee = employees.Find(e => e.id == id); // Пошук працівника за ID
-            return Task.FromResult(employee);
+
+            await _employeesRepository.AddEmployeesAsync(empl);
         }
 
-        public Task AddEmployeesAsync(Employees employee)
-        {
-            employees.Add(employee); 
-            return Task.CompletedTask;
-        }
-
-        public Task UpdateEmployeesAsync(Employees employee)
-        {
-            var existingEmployee = employees.Find(e => e.id == employee.id);
-            if (existingEmployee != null)
+            public async Task<IEnumerable<Employees>> AllEmployeesAsync(Employees empl)
             {
-                existingEmployee.surname = employee.surname;
-                existingEmployee.name = employee.name;
-                existingEmployee.patronymic = employee.patronymic;
-                existingEmployee.year_of_birth = employee.year_of_birth;
-                existingEmployee.year_of_admission = employee.year_of_admission;
-                existingEmployee.length_of_service = employee.length_of_service;
-                existingEmployee.position = employee.position;
-                existingEmployee.gender = employee.gender;
-                existingEmployee.address = employee.address;
-                existingEmployee.city = employee.city;
-                existingEmployee.phone_number = employee.phone_number;
+               return await _employeesRepository.GetAllEmployeesAsync();
             }
-            return Task.CompletedTask;
-        }
 
-        public Task DeleteEmployeesAsync(Employees employee)
-        {
-            employees.Remove(employee); // Видаляє працівника
-            return Task.CompletedTask;
+            public async Task UpdateEmployeesAsync(Employees empl)
+            {
+                await _employeesRepository.UpdateEmployessAsync(empl);
+            }
+
+            public  async Task DeleteEmployeesAsync(Employees empl)
+            {
+            await _employeesRepository.DeleteEmployeesAsync(empl);
+            }
         }
     }
-}
-    
+
+
 

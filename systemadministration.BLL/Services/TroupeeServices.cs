@@ -1,6 +1,9 @@
 ﻿using system.administration.DAL.Entities;
+using system.administration.DAL.IRepository;
+using system.administration.DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,28 +13,32 @@ namespace systemadministration.BLL.Services
 {
     public class TroupeeServices
     {
-        public TroupeeServices()
+        private readonly ITroupeRepository _troupeRepository;
+        public TroupeeServices(ITroupeRepository troupeRepository)
         {
+            _troupeRepository = troupeRepository;
         }
 
-        public Task<List<Troupe>> GetCategoriesAsync()
+        public TroupeeServices(){}
+
+        public async Task<IEnumerable<Troupe>> GetAllTroupeAsync()
         {
-            throw new NotImplementedException();
+            return await _troupeRepository.GetAllTroupeAsync();
         }
 
-        public Task<Troupe> GetCategoryByIdAsync(int id)
+        public  async Task AddTroupeAsync(Troupe tr)
         {
-            throw new NotImplementedException();
+            await _troupeRepository.AddTroupeAsync(tr);
         }
 
-        public Task AddCategorAsync(Troupe troupe)
+        public async Task DeleteTroupeAsync(Troupe tr)
         {
-            throw new NotImplementedException();
+            await _troupeRepository.DeleteTroupeAsync(tr);
         }
 
-        public Task UpdateCategory(Troupe troupe)
+        public async Task UpdateTroupeAsync(Troupe tr)
         {
-            throw new NotImplementedException();
+            await _troupeRepository.UpdateTroupeAsync(tr);
         }
     }
 }

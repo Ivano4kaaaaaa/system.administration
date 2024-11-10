@@ -5,39 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using system.administration.DAL.Entities;
 using systemadministration.BLL.Services;
+using system.administration.DAL.IRepository;
+using system.administration.DAL.Repository;
+
 
 namespace systemadministration.BLL.Services
 {
+  
     public class PerformanceeServices
     {
-        private static List<Performance> performancee = new List<Performance>();
-        public PerformanceeServices()
+        private readonly IPerformanceRepository _performanceRepository;
+        public PerformanceeServices(IPerformanceRepository performanceRepository)
         {
+            _performanceRepository = performanceRepository;
         }
 
-        public Task<List<Performance>> GetPerformanceeAsync()
+        public async Task<IEnumerable<Performance>> GetAllPerformanceAsync()
         {
-           return Task.FromResult(performancee);
+            return  await _performanceRepository.GetAllPerformanceAsync();
+
         }
 
-        public Task<Performance> GetPerformanceByIdAsync(int performance_id)
+        public async Task AddPerformanceAsync(Performance perf)
         {
-            throw new NotImplementedException();
+             await _performanceRepository.AddPerformanceAsync(perf);
         }
 
-        public Task AddPerformanceAsync(Performance performance)
+        public async Task UpdatePerformance(Performance perf)
         {
-            throw new NotImplementedException();
+           await _performanceRepository.UpdatePerformanceAsync(perf);  
         }
 
-        public Task UpdatePerformance(Performance performance)
+        public async Task DeletePerformanceAsync(Performance perf)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeletePerformanceAsync(Performance performance)
-        {
-            throw new NotImplementedException();
+          await _performanceRepository.DeletePerformanceAsync(perf);
         }
     }
 

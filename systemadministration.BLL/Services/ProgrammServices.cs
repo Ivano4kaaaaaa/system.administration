@@ -1,4 +1,5 @@
 ﻿using system.administration.DAL.Entities;
+using system.administration.DAL.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,45 +10,28 @@ namespace systemadministration.BLL.Services
 {
     public class ProgrammServices
     {
-        public ProgrammServices()
+        private readonly IProgramRepository _programRepository;
+        public ProgrammServices (IProgramRepository programRepository)
         {
-
+            _programRepository = programRepository;
         }
-        private static List<Program> programs = new List<Program>();
-        public Task<List<Program>> GetProgramAsync()
+       
+        public async Task<IEnumerable<Program>> GetAllProgramAsync()
         {
-            return Task.FromResult(programs);
+            return await _programRepository.GetAllProgramAsync() ;
         }
-
-        public Task<Program> GetProgramByIdAsync(string show)
+        public async Task AddProgramAsync(Program prog)
         {
-            var program = programs.Find(p => p.show == show); 
-            return Task.FromResult(program);
-        }
-
-        public Task AddProgramAsync(Program program)
-        {
-            programs.Add(program);
-            return Task.CompletedTask;
+           await _programRepository.AddProgramAsync(prog);
         }
 
-        public Task UpdateProgramAsync(Program program)
+        public Task UpdateProgramAsync(Program prog)
         {
-            var existingProgram = programs.Find(p => p.show == program.show);
-            if (existingProgram != null)
-            {
-                existingProgram.show = program.show;
-                existingProgram.ticket_price = program.ticket_price;
-                existingProgram.days_and_times = program.days_and_times;
-                existingProgram.premiere_data = program.premiere_data;
-                existingProgram.performance_period = program.performance_period;
-            }
-            return Task.CompletedTask;
+          return _programRepository.UpdateProgramAsync(prog);   
         }
-        public Task DeleteProgramAsync(Program program)
+        public async Task DeleteProgramAsync(Program prog)
         {
-            programs.Remove(program); 
-            return Task.CompletedTask;
+           await _programRepository.DeleteProgramAsync(prog);
         }
     }
  }

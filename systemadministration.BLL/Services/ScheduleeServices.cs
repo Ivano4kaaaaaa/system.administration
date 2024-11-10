@@ -1,37 +1,42 @@
 ﻿using system.administration.DAL.Entities;
+using system.administration.DAL.IRepository;
+using system.administration.DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using systemadministration.BLL.Services;
 
 namespace systemadministration.BLL.Services
 {
     public  class ScheduleeServices
     {
-        public ScheduleeServices()
+     private readonly IScheduleRepository _scheduleRepository;
+        public ScheduleeServices(IScheduleRepository scheduleRepository)
         {
+           _scheduleRepository = scheduleRepository;
+            }
+            public ScheduleeServices(){ }
 
+        public async Task<IEnumerable<Schedule>> GetAllScheduleAsync()
+        {
+            return await _scheduleRepository.GetAllScheduleAsync();
         }
 
-        public Task<List<Schedule>> GetCategoriesAsync()
+        public async Task DeleteScheduleAsync(Schedule sch)
         {
-            throw new NotImplementedException();
+           await _scheduleRepository.DeleteScheduleAsync(sch);
         }
 
-        public Task<Schedule> GetCategoryByIdAsync(int id)
+        public async Task AddScheduleAsync(Schedule sch)
         {
-            throw new NotImplementedException();
+          await _scheduleRepository.AddScheduleAsync(sch);
         }
 
-        public Task AddCategorAsync(Schedule schedule)
+        public async Task UpdateScheduleAsync(Schedule sch)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateCategory(Schedule schedule)
-        {
-            throw new NotImplementedException();
+            await _scheduleRepository.UpdateScheduleAsync(sch);
         }
     }
 }

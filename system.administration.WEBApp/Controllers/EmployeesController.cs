@@ -23,7 +23,7 @@ namespace system.administration.WEBApp.Controllers
         public IActionResult AddEmployees(Employees employee)
         {
             _employeeServices.AddEmployeesAsync(employee);
-            return RedirectToAction(nameof(Index));
+            return View (nameof(Index));
         }
 
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
@@ -31,11 +31,11 @@ namespace system.administration.WEBApp.Controllers
             var employee = await _employeeServices.GetEmployeesByIdAsync(id);
             if (employee == null)
             {
-                return NotFound();
+                return View("The problem with the data");
             }
 
             await _employeeServices.DeleteEmployeesAsync(employee);
-            return NoContent();
+            return View(employee);
         }
 
         public async Task<IActionResult> UpdateEmployee(int id, Employees employee)

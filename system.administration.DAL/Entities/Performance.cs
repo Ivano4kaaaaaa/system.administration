@@ -8,10 +8,10 @@ namespace system.administration.DAL.Entities
 {
     public  class Performance
     {
-        public int performance_id { get; set; }
+        public int id { get; set; }
         public string? name { get; set; }
         public string? director { get; set; }
-        public string? artist { get; set; }
+        public string? production_designer { get; set; }
         public string? conductor { get; set; }
         public string? authon { get; set; }
         public string? genre { get; set; }

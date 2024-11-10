@@ -8,7 +8,7 @@ namespace system.administration.DAL.Entities
 {
     public class Troupe
     {
-        public int troupe_id { get; set; }
+        public int id { get; set; }
         public int performance_id { get; set; }
         public int employee_id { get; set; }
         public string? role { get; set; }

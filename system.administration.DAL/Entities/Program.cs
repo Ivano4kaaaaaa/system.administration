@@ -8,6 +8,7 @@ namespace system.administration.DAL.Entities
 {
     public class Program
     {
+        public int id {  get; set; }
         public string? show { get; set; }
         public DateTime premiere_data { get; set; }
         public string? performance_period { get; set; }
