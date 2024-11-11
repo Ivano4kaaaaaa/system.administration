@@ -13,5 +13,6 @@ namespace system.administration.DAL.IRepository
         public Task AddPerformanceAsync(Performance perf);
         public Task DeletePerformanceAsync(Performance perf);
         public Task UpdatePerformanceAsync(Performance perf);
+        public Task<Employees> GetPerformanceAsync(int id);
     }
 }

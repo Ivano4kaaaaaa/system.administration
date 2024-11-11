@@ -16,16 +16,8 @@ namespace system.administration.DAL.Repository
 
         public async Task AddPerformanceAsync(Performance perf)
         {
-      
-        var performance = await _context.Performances.Where(p => p.id == perf.id).FirstOrDefaultAsync();
-            performance.id = perf.id;
-            performance.name = perf.name;
-            performance.director = perf.director;
-            performance.conductor = perf.conductor;
-            performance.genre = perf.genre;
-            performance.production_designer = perf.production_designer;
-            performance.type = perf.type;
-            performance.authon = perf.authon;
+
+            _context.Performances.AddAsync(perf);
             await _context.SaveChangesAsync();
         }
 
@@ -41,6 +33,11 @@ namespace system.administration.DAL.Repository
             return await _context.Performances.ToListAsync();
         }
 
+        public async Task<Performance> GetPerformanceAsync(int id)
+        {
+            return await _context.Performances.Where(p => p.id == id).FirstAsync();
+        }
+
         public async Task UpdatePerformanceAsync(Performance perf)
         {
             var performance = await _context.Performances.Where(p => p.id == perf.id).FirstOrDefaultAsync();
@@ -52,6 +49,11 @@ namespace system.administration.DAL.Repository
             performance.type= perf.type;
             performance.authon= perf.authon;
             await _context.SaveChangesAsync();
+        }
+
+        Task<Employees> IPerformanceRepository.GetPerformanceAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

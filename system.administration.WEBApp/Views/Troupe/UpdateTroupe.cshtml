@@ -1,4 +1,4 @@
-﻿@model IEnumerable<system.administration.DAL.Entities.Troupe>
+﻿@model system.administration.DAL.Entities.Troupe
 
 @{
     ViewData["Title"] = "UpdateTroupe";
@@ -6,48 +6,40 @@
 
 <h1>UpdateTroupe</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.troupe_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.performance_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.employee_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.troupe_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.performance_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.employee_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.role)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h4>Troupe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateTroupe">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="performance_id" class="control-label"></label>
+                <input asp-for="performance_id" class="form-control" />
+                <span asp-validation-for="performance_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="employee_id" class="control-label"></label>
+                <input asp-for="employee_id" class="form-control" />
+                <span asp-validation-for="employee_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="role" class="control-label"></label>
+                <input asp-for="role" class="form-control" />
+                <span asp-validation-for="role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

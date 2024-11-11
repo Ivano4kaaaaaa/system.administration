@@ -28,7 +28,7 @@ namespace system.administration.WEBApp.Controllers
 
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
         {
-            var employee = await _employeeServices.GetEmployeesByIdAsync(id);
+            var employee = await _employeeServices.GetEmploysByIdAsync(id);
             if (employee == null)
             {
                 throw new Exception("This Employes Не існує");
