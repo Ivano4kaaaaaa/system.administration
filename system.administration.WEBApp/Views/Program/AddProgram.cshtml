@@ -1,4 +1,4 @@
-﻿@model IEnumerable<system.administration.DAL.Entities.Program>
+﻿@model system.administration.DAL.Entities.Program
 
 @{
     ViewData["Title"] = "AddProgram";
@@ -6,54 +6,50 @@
 
 <h1>AddProgram</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.show)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.premiere_data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.performance_period)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.days_and_times)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ticket_price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.show)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.premiere_data)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.performance_period)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.days_and_times)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ticket_price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h4>Program</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProgram">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="show" class="control-label"></label>
+                <input asp-for="show" class="form-control" />
+                <span asp-validation-for="show" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="premiere_data" class="control-label"></label>
+                <input asp-for="premiere_data" class="form-control" />
+                <span asp-validation-for="premiere_data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="performance_period" class="control-label"></label>
+                <input asp-for="performance_period" class="form-control" />
+                <span asp-validation-for="performance_period" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="days_and_times" class="control-label"></label>
+                <input asp-for="days_and_times" class="form-control" />
+                <span asp-validation-for="days_and_times" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ticket_price" class="control-label"></label>
+                <input asp-for="ticket_price" class="form-control" />
+                <span asp-validation-for="ticket_price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

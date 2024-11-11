@@ -40,6 +40,12 @@ namespace system.administration.DAL.Repository
             return await _context.Schedules.ToListAsync();
         }
 
+        public async Task<Schedule> GetSheduleByIdAsync(int id)
+        {
+            return await _context.Schedules.Where(sh => sh.id == id ).FirstAsync();
+           
+        }
+
         public async Task UpdateScheduleAsync(Schedule sch)
         {
             var schedule = await _context.Schedules.Where(s => s.id == sch.id).FirstOrDefaultAsync();

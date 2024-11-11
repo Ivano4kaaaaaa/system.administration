@@ -40,5 +40,14 @@ namespace systemadministration.BLL.Services
         {
             await _troupeRepository.UpdateTroupeAsync(tr);
         }
+        public async Task<Troupe> GetTroupeByIdAsync(int id)
+        {
+            return await _troupeRepository.GetTroupeByIdAsync(id);
+        }
+
+        public async Task DeleteTroupeAsync(Task<Troupe> troupe)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

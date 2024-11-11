@@ -21,13 +21,7 @@ namespace system.administration.DAL.Repository
 
         public async Task AddProgramAsync(Program prog)
         {
-        var program = await _context.Programs.Where(pr => pr.id == prog.id).FirstOrDefaultAsync();
-            program.id = prog.id;
-            program.show = prog.show;
-            program.premiere_data = prog.premiere_data;
-            program.ticket_price = prog.ticket_price;
-            program.days_and_times = prog.days_and_times;
-            program.performance_period = prog.performance_period;
+            _context.Programs.AddAsync(prog);
             await _context.SaveChangesAsync();
         }
 
@@ -41,6 +35,11 @@ namespace system.administration.DAL.Repository
         public async Task<IEnumerable<Program>> GetAllProgramAsync()
         {
             return await _context.Programs.ToListAsync();
+        }
+
+        public async Task<Program> GetProgramAsync(int id)
+        {
+            return await _context.Programs.Where(p => p.id == id).FirstAsync();
         }
 
         public async Task<Program> GetProgramByIdAsync(int id)
@@ -60,3 +59,4 @@ namespace system.administration.DAL.Repository
         }
     }
 }
+

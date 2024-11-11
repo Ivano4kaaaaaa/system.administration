@@ -16,7 +16,7 @@ namespace system.administration.WEBApp.Controllers
 
         public IActionResult Index()
         {
-            var performance = _performanceeServices.GetPerformanceeAsync().Result;
+            var performance = _performanceeServices.GetAllPerformanceAsync().Result;
             return View(performance);
         }
 
@@ -26,7 +26,7 @@ namespace system.administration.WEBApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> DeletePerformanceAsync(int id)
+        public async Task<IActionResult> DeletePerformanceAsync(int id, Performance perf)
         {
             var performance = await _performanceeServices.GetPerformanceByIdAsync(id);
             if (performance == null)
@@ -34,20 +34,21 @@ namespace system.administration.WEBApp.Controllers
                 return NotFound();
             }
 
-            await _performanceeServices.DeletePerformanceAsync(performance);
+            await _performanceeServices.DeletePerformanceAsync(perf);
             return NoContent();
         }
 
         public async Task<IActionResult> UpdatePerformance(int id, Performance performance)
         {
-            if (id != performance.performance_id)
+            if (id != performance.id)
             {
-                return BadRequest();
+                return Redirect($"Home/Error/");
             }
 
             await _performanceeServices.UpdatePerformance(performance);
-            return NoContent();
+            return View("Index", _performanceeServices.GetAllPerformanceAsync().Result);
         }
     }
 }
+
 

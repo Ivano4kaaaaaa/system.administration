@@ -13,5 +13,6 @@ namespace system.administration.DAL.IRepository
         public Task AddTroupeAsync(Troupe tr);
         public Task DeleteTroupeAsync(Troupe tr);
         public Task UpdateTroupeAsync(Troupe tr);
+        public Task<Troupe> GetTroupeByIdAsync(int id);
     }
 }

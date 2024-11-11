@@ -23,7 +23,7 @@ namespace system.administration.WEBApp.Controllers
         public IActionResult AddEmployees(Employees employee)
         {
             _employeeServices.AddEmployeesAsync(employee);
-            return View (nameof(Index));
+            return View(nameof(Index));
         }
 
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
@@ -46,8 +46,7 @@ namespace system.administration.WEBApp.Controllers
             }
 
             await _employeeServices.UpdateEmployeesAsync(employee);
-            
-            return View("Index",_employeeServices.GetAllEmployeesAsync().Result);
+            return View("Index", _employeeServices.GetAllEmployeesAsync().Result);
         }
     }
 }

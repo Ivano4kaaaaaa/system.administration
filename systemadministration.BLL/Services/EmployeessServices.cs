@@ -27,7 +27,10 @@ namespace systemadministration.BLL.Services
         {
             return await _employeesRepository.GetAllEmployeesAsync();
         }
-
+        public async Task<Employees> GetEmployeesByIdAsync(int id)
+        {
+            return await _employeesRepository.GetEmployessAsync(id);
+        }
         public async Task<Employees> GetEmploysByIdAsync(int id)
         {
             return await _employeesRepository.GetEmploeyesAsync(id);

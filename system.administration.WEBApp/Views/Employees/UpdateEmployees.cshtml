@@ -1,4 +1,4 @@
-﻿@model IEnumerable<system.administration.DAL.Entities.Employees>
+﻿@model system.administration.DAL.Entities.Employees
 
 @{
     ViewData["Title"] = "UpdateEmployees";
@@ -6,96 +6,80 @@
 
 <h1>UpdateEmployees</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.surname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.patronymic)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.year_of_birth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.year_of_admission)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.length_of_service)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.city)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.phone_number)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.patronymic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.year_of_birth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.year_of_admission)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.length_of_service)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.city)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone_number)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h4>Employees</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateEmployees">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="surname" class="control-label"></label>
+                <input asp-for="surname" class="form-control" />
+                <span asp-validation-for="surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="patronymic" class="control-label"></label>
+                <input asp-for="patronymic" class="form-control" />
+                <span asp-validation-for="patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="year_of_birth" class="control-label"></label>
+                <input asp-for="year_of_birth" class="form-control" />
+                <span asp-validation-for="year_of_birth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="year_of_admission" class="control-label"></label>
+                <input asp-for="year_of_admission" class="form-control" />
+                <span asp-validation-for="year_of_admission" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="length_of_service" class="control-label"></label>
+                <input asp-for="length_of_service" class="form-control" />
+                <span asp-validation-for="length_of_service" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="position" class="control-label"></label>
+                <input asp-for="position" class="form-control" />
+                <span asp-validation-for="position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="gender" class="control-label"></label>
+                <input asp-for="gender" class="form-control" />
+                <span asp-validation-for="gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="address" class="control-label"></label>
+                <input asp-for="address" class="form-control" />
+                <span asp-validation-for="address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="city" class="control-label"></label>
+                <input asp-for="city" class="form-control" />
+                <span asp-validation-for="city" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone_number" class="control-label"></label>
+                <input asp-for="phone_number" class="form-control" />
+                <span asp-validation-for="phone_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
