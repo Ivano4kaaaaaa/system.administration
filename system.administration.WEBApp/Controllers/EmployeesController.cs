@@ -16,14 +16,14 @@ namespace system.administration.WEBApp.Controllers
 
         public IActionResult Index()
         {
-            var employees = _employeeServices.GetEmployeesAsync().Result;
+            var employees = _employeeServices.GetAllEmployeesAsync().Result;
             return View(employees);
         }
 
         public IActionResult AddEmployees(Employees employee)
         {
             _employeeServices.AddEmployeesAsync(employee);
-            return View (nameof(Index));
+            return View(nameof(Index));
         }
 
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
@@ -31,22 +31,23 @@ namespace system.administration.WEBApp.Controllers
             var employee = await _employeeServices.GetEmployeesByIdAsync(id);
             if (employee == null)
             {
-                return View("The problem with the data");
+                throw new Exception("This Employes Не існує");
             }
 
             await _employeeServices.DeleteEmployeesAsync(employee);
-            return View(employee);
+            return View(nameof(Index));
         }
 
         public async Task<IActionResult> UpdateEmployee(int id, Employees employee)
         {
             if (id != employee.id)
             {
-                return BadRequest();
+                return Redirect($"Home/Error/");
             }
 
             await _employeeServices.UpdateEmployeesAsync(employee);
-            return NoContent();
+
+            return View("Index", _employeeServices.GetAllEmployeesAsync().Result);
         }
     }
 }
