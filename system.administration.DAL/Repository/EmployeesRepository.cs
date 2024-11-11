@@ -36,8 +36,7 @@ namespace system.administration.DAL.Repository
             employees.city = empl.city;
             await _context.SaveChangesAsync();
         }
-
-
+        
         public async Task<Employees> GetEmploeyesAsync(int id)
         {
             return await _context.Employees.Where(e => e.id == id).FirstAsync();
@@ -45,7 +44,7 @@ namespace system.administration.DAL.Repository
 
         public async Task AddEmployeesAsync(Employees empl)
         {
-           
+
             _context.Employees.AddAsync(empl);
             await _context.SaveChangesAsync();
         }

@@ -46,7 +46,6 @@ namespace system.administration.WEBApp.Controllers
             }
 
             await _employeeServices.UpdateEmployeesAsync(employee);
-
             return View("Index", _employeeServices.GetAllEmployeesAsync().Result);
         }
     }

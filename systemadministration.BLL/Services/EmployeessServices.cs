@@ -27,8 +27,6 @@ namespace systemadministration.BLL.Services
         {
             return await _employeesRepository.GetAllEmployeesAsync();
         }
-
-
         public async Task<Employees> GetEmployeesByIdAsync(int id)
         {
             return await _employeesRepository.GetEmployessAsync(id);
@@ -36,7 +34,6 @@ namespace systemadministration.BLL.Services
         public async Task<Employees> GetEmploysByIdAsync(int id)
         {
             return await _employeesRepository.GetEmploeyesAsync(id);
-
         }
         public async Task UpdateEmployeesAsync(Employees empl)
         {
@@ -48,8 +45,4 @@ namespace systemadministration.BLL.Services
             await _employeesRepository.DeleteEmployeesAsync(empl);
         }
     }
-
 }
-
-
-

@@ -15,9 +15,7 @@ namespace system.administration.DAL.IRepository
         public Task AddEmployeesAsync(Employees empl);
         public Task DeleteEmployeesAsync(Employees empl);
         public Task UpdateEmployessAsync(Employees empl);
-
         Task<Employees> GetEmployessAsync(int id);
         public Task<Employees> GetEmploeyesAsync(int id);
-
     }
 }
