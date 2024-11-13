@@ -16,16 +16,22 @@ namespace system.administration.WEBApp.Controllers
 
         public IActionResult Index()
         {
-            var employees = _employeeServices.GetAllEmployeesAsync().Result;
-            return View(employees);
+            //var employees = _employeeServices.GetAllEmployeesAsync().Result;
+            //return View(employees);
+            return View(_employeeServices.GetAllEmployeesAsync().Result);
         }
-
+        [HttpGet]
         public IActionResult AddEmployees(Employees employee)
         {
             _employeeServices.AddEmployeesAsync(employee);
             return View(nameof(Index));
         }
-
+        [HttpPost]
+        //public IActionResult AddEmployees(Employees employee)
+        //{
+        //    _employeeServices.AddEmployeesAsync(employee);
+        //    return Redirect("/Employees/Index");
+        //}
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
         {
             var employee = await _employeeServices.GetEmployeesByIdAsync(id);

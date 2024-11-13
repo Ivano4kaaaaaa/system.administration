@@ -14,8 +14,9 @@ builder.Services.AddSingleton<IPerformanceRepository, PerformanceRepository>();
 builder.Services.AddSingleton<IProgramRepository, ProgramRepository>();
 builder.Services.AddSingleton<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddSingleton<ITroupeRepository, TroupeRepository>();
+builder.Services.AddScoped<EmployeessServices>();
 
-var app = builder.Build();
+var app = builder.Build();   
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
