@@ -38,5 +38,9 @@ namespace systemadministration.BLL.Services
         {
             await _scheduleRepository.UpdateScheduleAsync(sch);
         }
+        public async Task<Schedule> GetScheduleByIdAsync(int id)
+        {
+            return await _scheduleRepository.GetSheduleByIdAsync(id);
+        }
     }
 }

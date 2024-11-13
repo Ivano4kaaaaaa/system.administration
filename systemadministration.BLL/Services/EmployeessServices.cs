@@ -11,6 +11,7 @@ namespace systemadministration.BLL.Services
     public class EmployeessServices
     {
         private readonly IEmployeesRepository _employeesRepository;
+
         public EmployeessServices(IEmployeesRepository employeesRepository)
         {
             _employeesRepository = employeesRepository;
@@ -19,26 +20,29 @@ namespace systemadministration.BLL.Services
 
         public async Task AddEmployeesAsync(Employees empl)
         {
-
             await _employeesRepository.AddEmployeesAsync(empl);
         }
 
-            public async Task<IEnumerable<Employees>> AllEmployeesAsync(Employees empl)
-            {
-               return await _employeesRepository.GetAllEmployeesAsync();
-            }
+        public async Task<IEnumerable<Employees>> GetAllEmployeesAsync()
+        {
+            return await _employeesRepository.GetAllEmployeesAsync();
+        }
+        public async Task<Employees> GetEmployeesByIdAsync(int id)
+        {
+            return await _employeesRepository.GetEmployessAsync(id);
+        }
+        public async Task<Employees> GetEmploysByIdAsync(int id)
+        {
+            return await _employeesRepository.GetEmploeyesAsync(id);
+        }
+        public async Task UpdateEmployeesAsync(Employees empl)
+        {
+            await _employeesRepository.UpdateEmployessAsync(empl);
+        }
 
-            public async Task UpdateEmployeesAsync(Employees empl)
-            {
-                await _employeesRepository.UpdateEmployessAsync(empl);
-            }
-
-            public  async Task DeleteEmployeesAsync(Employees empl)
-            {
+        public async Task DeleteEmployeesAsync(Employees empl)
+        {
             await _employeesRepository.DeleteEmployeesAsync(empl);
-            }
         }
     }
-
-
-
+}

@@ -13,5 +13,6 @@ namespace system.administration.DAL.IRepository
         public Task AddProgramAsync(Program prog);
         public Task DeleteProgramAsync(Program prog);
         public Task UpdateProgramAsync(Program prog);
+        Task<Program> GetProgramAsync(int id);
     }
 }

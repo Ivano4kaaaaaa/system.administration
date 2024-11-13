@@ -36,9 +36,13 @@ namespace systemadministration.BLL.Services
            await _performanceRepository.UpdatePerformanceAsync(perf);  
         }
 
-        public async Task DeletePerformanceAsync(Performance perf)
+        public async Task DeletePerformanceAsync(Performance performancee)
         {
-          await _performanceRepository.DeletePerformanceAsync(perf);
+          await _performanceRepository.DeletePerformanceAsync(performancee);
+        }
+        public async Task<Employees> GetPerformanceByIdAsync(int id)
+        {
+            return await _performanceRepository.GetPerformanceAsync(id);
         }
     }
 

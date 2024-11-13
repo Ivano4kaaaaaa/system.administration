@@ -50,6 +50,11 @@ namespace system.administration.DAL.Repository
             return await _context.Troupes.ToListAsync();
         }
 
+        public async Task<Troupe> GetTroupeByIdAsync(int id)
+        {
+            return await _context.Troupes.Where(t => t.id == id).FirstAsync();
+        }
+
         public async Task UpdateTroupeAsync(Troupe tr)
         {
             var troupe = await _context.Troupes.Where(t => t.id == tr.id).FirstOrDefaultAsync();
