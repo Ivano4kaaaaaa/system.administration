@@ -1,12 +1,11 @@
-﻿using System;
+﻿using system.administration.DAL.Entities;
+using system.administration.DAL.IRepository;
+using system.administration.DAL.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using system.administration.DAL.Entities;
-using systemadministration.BLL.Services;
-using system.administration.DAL.IRepository;
-using system.administration.DAL.Repository;
 
 
 namespace systemadministration.BLL.Services
@@ -31,20 +30,32 @@ namespace systemadministration.BLL.Services
              await _performanceRepository.AddPerformanceAsync(perf);
         }
 
-        public async Task UpdatePerformance(Performance perf)
+        public async Task UpdatePerformance(int id)
         {
-           await _performanceRepository.UpdatePerformanceAsync(perf);  
+           var performances = await _performanceRepository.GetPerformanceAsync(id);
+            if (performances != null)
+            {
+                await _performanceRepository.UpdatePerformanceAsync(performances);
+            }else
+            {
+                throw new Exception("Виставу оновлено");
+            }
         }
 
-        public async Task DeletePerformanceAsync(Performance performancee)
+        public async Task DeletePerformanceAsync(int id)
         {
-          await _performanceRepository.DeletePerformanceAsync(performancee);
+            var performances = await _performanceRepository.GetPerformanceAsync(id);
+            if (performances != null)
+            {
+                await _performanceRepository.DeletePerformanceAsync(performances);
+            }else{
+                throw new Exception("Виставу не знайдено");
+            }
         }
-        public async Task<Employees> GetPerformanceByIdAsync(int id)
+        public async Task<Performance> GetPerformanceByIdAsync(int id)
         {
             return await _performanceRepository.GetPerformanceAsync(id);
         }
     }
 
 }
-

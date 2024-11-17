@@ -13,7 +13,7 @@ namespace system.administration.DAL.IRepository
         public Task AddScheduleAsync(Schedule sch);
         public Task DeleteScheduleAsync(Schedule sch);
         public Task UpdateScheduleAsync(Schedule sch);
-        public Task<Schedule> GetSheduleByIdAsync(int id);
+        Task<Schedule> GetSheduleByIdAsync(int id);
        
     }
 }

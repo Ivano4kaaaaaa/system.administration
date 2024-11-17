@@ -13,9 +13,9 @@ namespace system.administration.WEBApp.Controllers
         }
         public IActionResult Index()
         {
-            var schedule = _scheduleServices.GetAllScheduleAsync().Result;
-            return View(schedule);
+            return View(_scheduleServices.GetAllScheduleAsync().Result);
         }
+        [HttpPost]
         public IActionResult AddSchedule(Schedule schedule)
         {
             _scheduleServices.AddScheduleAsync(schedule);
@@ -23,25 +23,13 @@ namespace system.administration.WEBApp.Controllers
         }
         public async Task<IActionResult> DeleteScheduleAsync(int id)
         {
-            var schedule = await _scheduleServices.GetScheduleByIdAsync(id);
-            if (schedule == null)
-            {
-                throw new Exception("This Schedule Не існує ");
-            }
-            await _scheduleServices.DeleteScheduleAsync(schedule);
-            return View(nameof(Index));
+           _scheduleServices.DeleteScheduleAsync(id);
+            return RedirectToAction("Index");
         }
-        public async Task<IActionResult> UpdateScheduleAsync(int id, Schedule schedule)
+        public async Task<IActionResult> UpdateScheduleAsync(int id)
         {
-   
-            if (id != schedule.id)
-            {
-                return Redirect($"Home/Error/");
-            }
-            await _scheduleServices.UpdateScheduleAsync(schedule);
-            return View("Index", _scheduleServices.GetAllScheduleAsync().Result);
+            _scheduleServices.UpdateScheduleAsync(id);
+            return RedirectToAction("Index");
         }
-
     }
 }
-

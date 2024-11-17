@@ -39,7 +39,7 @@ namespace system.administration.DAL.Repository
         
         public async Task<Employees> GetEmploeyesAsync(int id)
         {
-            return await _context.Employees.Where(e => e.id == id).FirstAsync();
+            return await _context.Employees.Where(e => e.id == id).FirstOrDefaultAsync();
         }
 
         public async Task AddEmployeesAsync(Employees empl)
@@ -49,11 +49,10 @@ namespace system.administration.DAL.Repository
             await _context.SaveChangesAsync();
         }
 
+
         public async Task<Employees> GetEmployessAsync(int id)
         {
             return await _context.Employees.Where(e => e.id == id).FirstAsync();
         }
-
- 
     }
 }

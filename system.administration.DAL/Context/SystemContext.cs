@@ -10,12 +10,23 @@ namespace system.administration.DAL.Context
 {
     public class SystemContext : DbContext
     {
-        public SystemContext()
+        public SystemContext(DbContextOptions<SystemContext> options) : base(options)
         { }
+
         public DbSet<Employees> Employees { get; set; }
         public DbSet<Performance> Performances { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Troupe> Troupes { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("YourConnectionString",
+                    options => options.MigrationsAssembly("system.administration.WEBApp"));
+            }
+        }
     }
 }
+

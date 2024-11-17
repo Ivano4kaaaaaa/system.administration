@@ -1,4 +1,4 @@
-﻿    @model system.administration.DAL.Entities.Employees
+﻿        @model system.administration.DAL.Entities.Employees
 
 @{
     ViewData["Title"] = "AddEmployees";
@@ -8,6 +8,20 @@
 
 <h4>Employees</h4>
 <hr />
+<div class="container mt-4">
+    <h1>Додати нового працівника</h1>
+    <form method="post" action="/Employees/Add">
+        <div class="mb-3">
+            <label for="name" class="form-label">Ім'я:</label>
+            <input type="text" class="form-control" id="name" name="name" required />
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required />
+        </div>
+        <button type="submit" class="btn btn-success">Додати</button>
+    </form>
+</div>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AddEmployees">

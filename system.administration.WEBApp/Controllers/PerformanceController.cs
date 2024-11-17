@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using system.administration.DAL.Entities;
 using systemadministration.BLL.Services;
+using Microsoft.VisualStudio.Web.CodeGeneration.Design;
 
 namespace system.administration.WEBApp.Controllers
 {
@@ -16,39 +17,26 @@ namespace system.administration.WEBApp.Controllers
 
         public IActionResult Index()
         {
-            var performance = _performanceeServices.GetAllPerformanceAsync().Result;
-            return View(performance);
+            //var performance = _performanceeServices.GetAllPerformanceAsync().Result;
+            //return View(performance);
+            return View(_performanceeServices.GetAllPerformanceAsync().Result);
         }
-
+        [HttpGet]
         public IActionResult AddPerformance(Performance performance)
         {
             _performanceeServices.AddPerformanceAsync(performance);
-            return RedirectToAction(nameof(Index));
+            return Redirect("/Performance/index");
         }
 
-        public async Task<IActionResult> DeletePerformanceAsync(int id, Performance perf)
+        public async Task<IActionResult> DeletePerformanceAsync(int id)
         {
-            var performance = await _performanceeServices.GetPerformanceByIdAsync(id);
-            if (performance == null)
-            {
-                return NotFound();
-            }
-
-            await _performanceeServices.DeletePerformanceAsync(perf);
-            return NoContent();
+            _performanceeServices.DeletePerformanceAsync(id);
+            return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> UpdatePerformance(int id, Performance performance)
+        public async Task<IActionResult> UpdatePerformance(int id)
         {
-            if (id != performance.id)
-            {
-                return Redirect($"Home/Error/");
-            }
-
-            await _performanceeServices.UpdatePerformance(performance);
-            return View("Index", _performanceeServices.GetAllPerformanceAsync().Result);
+            _performanceeServices.UpdatePerformance(id);
+            return RedirectToAction("Index");
         }
     }
 }
-
-

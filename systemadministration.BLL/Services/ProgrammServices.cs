@@ -27,13 +27,29 @@ namespace systemadministration.BLL.Services
            await _programRepository.AddProgramAsync(prog);
         }
 
-        public Task UpdateProgramAsync(Program prog)
+        public async Task UpdateProgramAsync(int id)
         {
-          return _programRepository.UpdateProgramAsync(prog);   
-        }
-        public async Task DeleteProgramAsync(Program prog)
+            var program = await _programRepository.GetProgramAsync(id);
+            if (program != null)
+            {
+                await _programRepository.UpdateProgramAsync(program);
+            }
+            else
+            {
+                throw new Exception("Програму оновлено");
+            }
+    }
+        public async Task DeleteProgramAsync(int id)
         {
-           await _programRepository.DeleteProgramAsync(prog);
+            var program = await _programRepository.GetProgramAsync(id);
+            if (program != null)
+            {
+                await _programRepository.DeleteProgramAsync(program);
+            }
+            else
+            {
+                throw new Exception("Програму не знайдено");
+            }
         }
         public async Task<Program> GetProgramByIdAsync(int id)
         {
@@ -42,4 +58,3 @@ namespace systemadministration.BLL.Services
 
     }
  }
-

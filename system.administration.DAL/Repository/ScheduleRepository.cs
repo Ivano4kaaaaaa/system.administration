@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace system.administration.DAL.Repository
 {
     public class ScheduleRepository : IScheduleRepository
@@ -21,8 +22,8 @@ namespace system.administration.DAL.Repository
         {
             var schedule = await _context.Schedules.Where(s=> s.id == sch.id).FirstOrDefaultAsync();
             schedule.id = sch.id;
-            schedule.perfomance_id = sch.perfomance_id;
-            schedule.start_data = sch.start_data;
+            schedule.perfomancee_id = sch.perfomancee_id;
+            schedule.startt_data = sch.startt_data;
             schedule.end_data = sch.end_data;
             schedule.venue= sch.venue;
             await _context.SaveChangesAsync();
@@ -49,8 +50,8 @@ namespace system.administration.DAL.Repository
         public async Task UpdateScheduleAsync(Schedule sch)
         {
             var schedule = await _context.Schedules.Where(s => s.id == sch.id).FirstOrDefaultAsync();
-            schedule.perfomance_id = sch.perfomance_id;
-            schedule.start_data = sch.start_data;
+            schedule.perfomancee_id = sch.perfomancee_id;
+            schedule.startt_data = sch.startt_data;
             schedule.end_data = sch.end_data;
             schedule.venue = sch.venue;
             await _context.SaveChangesAsync();

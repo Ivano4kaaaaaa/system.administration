@@ -31,8 +31,8 @@ namespace system.administration.DAL.Repository
         {
             var troupe = await _context.Troupes.Where(t=> t.id == tr.id).FirstOrDefaultAsync();
             troupe.id = tr.id;
-            troupe.employee_id = tr.employee_id;
-            troupe.performance_id = tr.performance_id;
+            troupe.employeess_id = tr.employeess_id;
+            troupe.performancees_id = tr.performancees_id;
             troupe.role = tr.role;
             await _context.SaveChangesAsync();
     }
@@ -58,8 +58,8 @@ namespace system.administration.DAL.Repository
         public async Task UpdateTroupeAsync(Troupe tr)
         {
             var troupe = await _context.Troupes.Where(t => t.id == tr.id).FirstOrDefaultAsync();
-            troupe.employee_id = tr.employee_id;
-            troupe.performance_id = tr.performance_id;
+            troupe.employeess_id = tr.employeess_id;
+            troupe.performancees_id = tr.performancees_id;
             troupe.role = tr.role;
             await _context.SaveChangesAsync();
         }

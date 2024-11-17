@@ -9,6 +9,11 @@ namespace system.administration.DAL.Repository
      public class  PerformanceRepository : IPerformanceRepository
     {
         private readonly  SystemContext _context;
+
+        public PerformanceRepository()
+        {
+        }
+
         public PerformanceRepository(SystemContext context)
         {
             _context = context;
@@ -27,7 +32,6 @@ namespace system.administration.DAL.Repository
             _context.Performances.Remove(performance);
             await _context.SaveChangesAsync();
         }
-
         public async Task<IEnumerable<Performance>> GetAllPerformanceAsync()
         {
             return await _context.Performances.ToListAsync();
@@ -49,11 +53,6 @@ namespace system.administration.DAL.Repository
             performance.type= perf.type;
             performance.authon= perf.authon;
             await _context.SaveChangesAsync();
-        }
-
-        Task<Employees> IPerformanceRepository.GetPerformanceAsync(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

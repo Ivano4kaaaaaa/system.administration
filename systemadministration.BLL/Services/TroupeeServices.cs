@@ -36,18 +36,62 @@ namespace systemadministration.BLL.Services
             await _troupeRepository.DeleteTroupeAsync(tr);
         }
 
-        public async Task UpdateTroupeAsync(Troupe tr)
+        public async Task UpdateTroupeAsync(int id)
         {
-            await _troupeRepository.UpdateTroupeAsync(tr);
+            var troupe = await _troupeRepository.GetTroupeByIdAsync(id);
+            if (troupe != null)
+            {
+                await _troupeRepository.UpdateTroupeAsync(troupe);
+            }
+            else
+            {
+                throw new Exception("Трупу  оновлено");
+            }
         }
         public async Task<Troupe> GetTroupeByIdAsync(int id)
         {
             return await _troupeRepository.GetTroupeByIdAsync(id);
         }
 
-        public async Task DeleteTroupeAsync(Task<Troupe> troupe)
+        public async Task DeleteTroupeAsync(int id)
         {
-            throw new NotImplementedException();
+            var troupe = await _troupeRepository.GetTroupeByIdAsync(id);
+            if (troupe != null)
+            {
+                await _troupeRepository.UpdateTroupeAsync(troupe);
+            }
+            else
+            {
+                throw new Exception("Трупу не знайдено");
+            }
         }
     }
 }
+
+//public async Task UpdateEmployeesAsync(int id)
+//{
+//    var employee = await _employeesRepository.GetEmploeyesAsync(id);
+//    if (employee != null)
+//    {
+//        await _employeesRepository.UpdateEmployessAsync(employee);
+//    }
+//    else
+//    {
+//        throw new Exception("Працівника оновлено");
+//    }
+//}
+
+//public async Task DeleteEmployeesAsync(int id)
+//{
+//    var employee = await _employeesRepository.GetEmploeyesAsync(id);
+//    if (employee != null)
+//    {
+//        await _employeesRepository.DeleteEmployeesAsync(employee);
+//    }
+//    else
+//    {
+//        throw new Exception("Працівника не знайдено");
+//    }
+//}
+//    }
+//}

@@ -17,16 +17,23 @@ namespace systemadministration.BLL.Services
         {
            _scheduleRepository = scheduleRepository;
             }
-            public ScheduleeServices(){ }
 
         public async Task<IEnumerable<Schedule>> GetAllScheduleAsync()
         {
             return await _scheduleRepository.GetAllScheduleAsync();
         }
 
-        public async Task DeleteScheduleAsync(Schedule sch)
+        public async Task DeleteScheduleAsync(int id)
         {
-           await _scheduleRepository.DeleteScheduleAsync(sch);
+            var schedule = await _scheduleRepository.GetSheduleByIdAsync(id);
+            if (schedule != null)
+            {
+                await _scheduleRepository.DeleteScheduleAsync(schedule);
+            }
+            else
+            {
+                throw new Exception("Програму не знайдено");
+            }
         }
 
         public async Task AddScheduleAsync(Schedule sch)
@@ -34,9 +41,17 @@ namespace systemadministration.BLL.Services
           await _scheduleRepository.AddScheduleAsync(sch);
         }
 
-        public async Task UpdateScheduleAsync(Schedule sch)
+        public async Task UpdateScheduleAsync(int id)
         {
-            await _scheduleRepository.UpdateScheduleAsync(sch);
+            var schedule = await _scheduleRepository.GetSheduleByIdAsync(id);
+            if (schedule != null)
+            {
+                await _scheduleRepository.UpdateScheduleAsync(schedule);
+            }
+            else
+            {
+                throw new Exception("Програму оновлено");
+            }
         }
         public async Task<Schedule> GetScheduleByIdAsync(int id)
         {

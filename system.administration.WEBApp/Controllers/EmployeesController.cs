@@ -13,46 +13,34 @@ namespace system.administration.WEBApp.Controllers
         {
             _employeeServices = employeesServices;
         }
-
         public IActionResult Index()
         {
             //var employees = _employeeServices.GetAllEmployeesAsync().Result;
             //return View(employees);
             return View(_employeeServices.GetAllEmployeesAsync().Result);
+        } 
+        [HttpGet]   
+        public IActionResult AddEmployees()
+        {
+          
+            return View();
         }
-        [HttpGet]
+       [HttpPost]
         public IActionResult AddEmployees(Employees employee)
         {
             _employeeServices.AddEmployeesAsync(employee);
-            return View(nameof(Index));
+            return Redirect("/Employees/Index");
         }
-        [HttpPost]
-        //public IActionResult AddEmployees(Employees employee)
-        //{
-        //    _employeeServices.AddEmployeesAsync(employee);
-        //    return Redirect("/Employees/Index");
-        //}
         public async Task<IActionResult> DeleteEmployeesAsync(int id)
         {
-            var employee = await _employeeServices.GetEmploysByIdAsync(id);
-            if (employee == null)
-            {
-                throw new Exception("This Employes Не існує");
-            }
-
-            await _employeeServices.DeleteEmployeesAsync(employee);
-            return View(nameof(Index));
+            _employeeServices.DeleteEmployeesAsync(id);
+            return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> UpdateEmployee(int id, Employees employee)
+        public async Task<IActionResult> UpdateEmployee(int id)
         {
-            if (id != employee.id)
-            {
-                return Redirect($"Home/Error/");
-            }
-
-            await _employeeServices.UpdateEmployeesAsync(employee);
-            return View("Index", _employeeServices.GetAllEmployeesAsync().Result);
+           _employeeServices.UpdateEmployeesAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

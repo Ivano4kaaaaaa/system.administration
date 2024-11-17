@@ -1,6 +1,12 @@
+using Elfie.Serialization;
+using Microsoft.EntityFrameworkCore;
+using system.administration.DAL.Context;
 using system.administration.DAL.IRepository;
 using system.administration.DAL.Repository;
+using System;
 using systemadministration.BLL.Services;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,15 +14,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<IEmployeesRepository, EmployeesRepository>();
+builder.Services.AddScoped<IEmployeesRepository, EmployeesRepository>();
 
-builder.Services.AddSingleton<IPerformanceRepository, PerformanceRepository>();
-builder.Services.AddSingleton<IProgramRepository, ProgramRepository>();
-builder.Services.AddSingleton<IScheduleRepository, ScheduleRepository>();
-builder.Services.AddSingleton<ITroupeRepository, TroupeRepository>();
+builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
+builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
+builder.Services.AddScoped<ITroupeRepository, TroupeRepository>();
 builder.Services.AddScoped<EmployeessServices>();
+builder.Services.AddDbContext<SystemContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var app = builder.Build();   
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -25,14 +32,10 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

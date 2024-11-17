@@ -30,19 +30,31 @@ namespace systemadministration.BLL.Services
         public async Task<Employees> GetEmployeesByIdAsync(int id)
         {
             return await _employeesRepository.GetEmployessAsync(id);
-        }
-        public async Task<Employees> GetEmploysByIdAsync(int id)
+        }    
+        public async Task UpdateEmployeesAsync(int id)
         {
-            return await _employeesRepository.GetEmploeyesAsync(id);
-        }
-        public async Task UpdateEmployeesAsync(Employees empl)
-        {
-            await _employeesRepository.UpdateEmployessAsync(empl);
+            var employee = await _employeesRepository.GetEmploeyesAsync(id);
+            if (employee != null)
+            {
+                await _employeesRepository.UpdateEmployessAsync(employee);
+            }
+            else
+            {
+                throw new Exception("Працівника оновлено");
+            }
         }
 
-        public async Task DeleteEmployeesAsync(Employees empl)
+        public async Task DeleteEmployeesAsync(int id)
         {
-            await _employeesRepository.DeleteEmployeesAsync(empl);
+            var employee = await _employeesRepository.GetEmploeyesAsync(id);
+            if (employee != null)
+            {
+                await _employeesRepository.DeleteEmployeesAsync(employee);
+            }
+            else
+            {
+                throw new Exception("Працівника не знайдено");
+            }  
         }
     }
 }

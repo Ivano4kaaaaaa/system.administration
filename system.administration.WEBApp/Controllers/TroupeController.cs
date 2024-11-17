@@ -14,9 +14,9 @@ namespace system.administration.WEBApp.Controllers
 
         public IActionResult Index()
         {
-            var troupe = _troupeServices.GetAllTroupeAsync().Result;
-            return View(troupe);
+            return View( _troupeServices.GetAllTroupeAsync().Result);
         }
+        [HttpPost]
         public IActionResult AddTroupeAsync(Troupe troupe)
         {
             _troupeServices.AddTroupeAsync(troupe);
@@ -24,23 +24,13 @@ namespace system.administration.WEBApp.Controllers
         }
         public async Task<IActionResult> DeleteTroupee(int id)
         {
-            var troupe = _troupeServices.GetTroupeByIdAsync(id);
-            if (troupe == null)
-            {
-                throw new Exception("This Troupe Не існує");
-            }
-
-            await _troupeServices.DeleteTroupeAsync(troupe);
-            return View(nameof(Index));
+            _troupeServices.DeleteTroupeAsync(id);
+            return RedirectToAction("Index");
         }
-        public async Task<IActionResult> UpdateTroupe(int id, Troupe troupe)
+        public async Task<IActionResult> UpdateTroupe(int id)
         {
-            if(id != troupe.id)
-            {
-                return Redirect($"Home/Error/");
-            }
-            await _troupeServices.UpdateTroupeAsync(troupe);
-            return View("Index", _troupeServices.GetAllTroupeAsync().Result);
-        }
+            _troupeServices.UpdateTroupeAsync(id);
+            return RedirectToAction("Index");
+        }  
     }
 }

@@ -14,33 +14,40 @@ namespace system.administration.WEBApp.Controllers
         }
         public IActionResult Index()
         {
-            var programs = _programServices.GetAllProgramAsync().Result;
-            return View(programs);
+            return View(_programServices.GetAllProgramAsync().Result);
         }
+        [HttpGet]
         public IActionResult AddProgram(system.administration.DAL.Entities.Program program)
         {
             _programServices.AddProgramAsync(program);
-            return View(nameof(Index));
+            return Redirect("/Program/index");
         }
         public async Task<IActionResult> DeleteProgramAsync(int id)
         {
-            system.administration.DAL.Entities.Program  program = await _programServices.GetProgramByIdAsync(id);
-            if (program == null)
-            {
-                throw new Exception("This Program Не існує ");
-            }
-            await _programServices.DeleteProgramAsync(program);
-            return View(nameof(Index));
-        }    
-        public async Task<IActionResult> UpdateProgram(int id, system.administration.DAL.Entities.Program program)
-        {
-            if (id != program.id ) {
-                return Redirect($"Home/Error/");
+            _programServices.DeleteProgramAsync(id);
+            return RedirectToAction("Index");
         }
-            await _programServices.UpdateProgramAsync(program);
-            return View("Index", _programServices.GetAllProgramAsync().Result );
-            
-            }
-        
+        public async Task<IActionResult> UpdateProgram(int id)
+        {
+            _programServices.UpdateProgramAsync(id);
+            return RedirectToAction("Index");
+        }
     }
 }
+
+//[HttpPost]
+//public IActionResult AddEmployees(Employees employee)
+//{
+//    _employeeServices.AddEmployeesAsync(employee);
+//    return Redirect("/Employees/Index");
+//}
+//public async Task<IActionResult> DeleteEmployeesAsync(int id)
+//{
+//    _employeeServices.DeleteEmployeesAsync(id);
+//    return RedirectToAction("Index");
+//}
+
+//public async Task<IActionResult> UpdateEmployee(int id)
+//{
+//    _employeeServices.UpdateEmployeesAsync(id);
+//    return RedirectToAction("Index");
