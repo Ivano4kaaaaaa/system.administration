@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\system.administration.DAL\system.administration.DAL.csproj" />
+    <ProjectReference Include="..\admin.DAL\admin.DAL.csproj" />
   </ItemGroup>
 
 </Project>

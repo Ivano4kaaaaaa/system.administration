@@ -1,6 +1,6 @@
-﻿using system.administration.DAL.Entities;
-using system.administration.DAL.IRepository;
-using system.administration.DAL.Repository;
+﻿using admin.DAL.Entities;
+using admin.DAL.IRepository;
+using admin.DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +21,7 @@ namespace systemadministration.BLL.Services
 
         public async Task<IEnumerable<Performance>> GetAllPerformanceAsync()
         {
+            
             return  await _performanceRepository.GetAllPerformanceAsync();
 
         }

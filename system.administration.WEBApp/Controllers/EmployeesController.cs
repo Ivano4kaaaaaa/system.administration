@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using system.administration.DAL.Entities;
+using admin.DAL.Entities;
 using systemadministration.BLL.Services;
 
 namespace system.administration.WEBApp.Controllers

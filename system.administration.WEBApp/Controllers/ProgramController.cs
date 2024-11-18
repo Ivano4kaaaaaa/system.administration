@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using system.administration.DAL.Entities;
+using admin.DAL.Entities;
 using systemadministration.BLL.Services;
 
 namespace system.administration.WEBApp.Controllers
@@ -17,7 +17,7 @@ namespace system.administration.WEBApp.Controllers
             return View(_programServices.GetAllProgramAsync().Result);
         }
         [HttpGet]
-        public IActionResult AddProgram(system.administration.DAL.Entities.Program program)
+        public IActionResult AddProgram(admin.DAL.Entities.Program program)
         {
             _programServices.AddProgramAsync(program);
             return Redirect("/Program/index");
@@ -34,20 +34,3 @@ namespace system.administration.WEBApp.Controllers
         }
     }
 }
-
-//[HttpPost]
-//public IActionResult AddEmployees(Employees employee)
-//{
-//    _employeeServices.AddEmployeesAsync(employee);
-//    return Redirect("/Employees/Index");
-//}
-//public async Task<IActionResult> DeleteEmployeesAsync(int id)
-//{
-//    _employeeServices.DeleteEmployeesAsync(id);
-//    return RedirectToAction("Index");
-//}
-
-//public async Task<IActionResult> UpdateEmployee(int id)
-//{
-//    _employeeServices.UpdateEmployeesAsync(id);
-//    return RedirectToAction("Index");

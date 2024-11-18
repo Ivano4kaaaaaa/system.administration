@@ -1,5 +1,7 @@
-﻿using system.administration.DAL.Entities;
-using system.administration.DAL.IRepository;
+﻿using admin.DAL.Entities;
+using admin.DAL.IRepository;
+using admin.DAL.Entities;
+using admin.DAL.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,6 +1,6 @@
-﻿using system.administration.DAL.Entities;
-using system.administration.DAL.IRepository;
-using system.administration.DAL.Repository;
+﻿using admin.DAL.Entities;
+using admin.DAL.IRepository;
+using admin.DAL.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,9 +18,7 @@ namespace systemadministration.BLL.Services
         {
             _troupeRepository = troupeRepository;
         }
-
         public TroupeeServices(){}
-
         public async Task<IEnumerable<Troupe>> GetAllTroupeAsync()
         {
             return await _troupeRepository.GetAllTroupeAsync();
@@ -67,31 +65,63 @@ namespace systemadministration.BLL.Services
         }
     }
 }
+//using admin.DAL.Entities;
+//using admin.DAL.IRepository;
+//using admin.DAL.Entities;
+//using admin.DAL.IRepository;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-//public async Task UpdateEmployeesAsync(int id)
+//namespace systemadministration.BLL.Services
 //{
-//    var employee = await _employeesRepository.GetEmploeyesAsync(id);
-//    if (employee != null)
+//    public class EmployeessServices
 //    {
-//        await _employeesRepository.UpdateEmployessAsync(employee);
-//    }
-//    else
-//    {
-//        throw new Exception("Працівника оновлено");
-//    }
-//}
+//        private readonly IEmployeesRepository _employeesRepository;
 
-//public async Task DeleteEmployeesAsync(int id)
-//{
-//    var employee = await _employeesRepository.GetEmploeyesAsync(id);
-//    if (employee != null)
-//    {
-//        await _employeesRepository.DeleteEmployeesAsync(employee);
-//    }
-//    else
-//    {
-//        throw new Exception("Працівника не знайдено");
-//    }
-//}
-//    }
-//}
+//        public EmployeessServices(IEmployeesRepository employeesRepository)
+//        {
+//            _employeesRepository = employeesRepository;
+//        }
+
+
+//        public async Task AddEmployeesAsync(Employees empl)
+//        {
+//            await _employeesRepository.AddEmployeesAsync(empl);
+//        }
+
+//        public async Task<IEnumerable<Employees>> GetAllEmployeesAsync()
+//        {
+//            return await _employeesRepository.GetAllEmployeesAsync();
+//        }
+//        public async Task<Employees> GetEmployeesByIdAsync(int id)
+//        {
+//            return await _employeesRepository.GetEmployessAsync(id);
+//        }
+//        public async Task UpdateEmployeesAsync(int id)
+//        {
+//            var employee = await _employeesRepository.GetEmploeyesAsync(id);
+//            if (employee != null)
+//            {
+//                await _employeesRepository.UpdateEmployessAsync(employee);
+//            }
+//            else
+//            {
+//                throw new Exception("Працівника оновлено");
+//            }
+//        }
+
+//        public async Task DeleteEmployeesAsync(int id)
+//        {
+//            var employee = await _employeesRepository.GetEmploeyesAsync(id);
+//            if (employee != null)
+//            {
+//                await _employeesRepository.DeleteEmployeesAsync(employee);
+//            }
+//            else
+//            {
+//                throw new Exception("Працівника не знайдено");
+//            }
+//        }

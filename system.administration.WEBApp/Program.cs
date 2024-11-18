@@ -1,8 +1,8 @@
 using Elfie.Serialization;
 using Microsoft.EntityFrameworkCore;
-using system.administration.DAL.Context;
-using system.administration.DAL.IRepository;
-using system.administration.DAL.Repository;
+using admin.DAL.Context;
+using admin.DAL.IRepository;
+using admin.DAL.Repository;
 using System;
 using systemadministration.BLL.Services;
 using static System.Net.Mime.MediaTypeNames;
@@ -21,7 +21,7 @@ builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<ITroupeRepository, TroupeRepository>();
 builder.Services.AddScoped<EmployeessServices>();
-builder.Services.AddDbContext<SystemContext>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<SystemContextcs>(options =>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
